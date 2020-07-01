@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public class LinkedList<X> implements ListInf<X> {
 
-    protected Node first;
-    protected Node last;
+    protected Node<X> first;
+    protected Node<X> last;
     protected int size;
 
     public LinkedList() {
@@ -25,7 +25,7 @@ public class LinkedList<X> implements ListInf<X> {
         if (item == null) {
             throw new IllegalArgumentException("cannot add null items to list");
         }
-        Node newItem = new Node(item);
+        Node<X> newItem = new Node<>(item);
         if (first == null) {
             first = newItem;
             last = first;
@@ -55,8 +55,8 @@ public class LinkedList<X> implements ListInf<X> {
         if (position > size()) {
             throw new IllegalArgumentException("Position is greater than length of list");
         }
-        Node currentNode = first;
-        Node newNode = new Node(item);
+        Node<X> currentNode = first;
+        Node<X> newNode = new Node<>(item);
 
         if (position == 0) {
             newNode.setNext(currentNode);
@@ -80,11 +80,11 @@ public class LinkedList<X> implements ListInf<X> {
             return remove();
         }
 
-        Node currentNode = first;
+        Node<X> currentNode = first;
         for (int i = 1; i < position; i++) {
             currentNode = currentNode.getNext();
         }
-        Node removeNode = currentNode.getNext();
+        Node<X> removeNode = currentNode.getNext();
         currentNode.setNext(removeNode.getNext());
 
         // if we removed the last item, update last
@@ -101,7 +101,7 @@ public class LinkedList<X> implements ListInf<X> {
             throw new IllegalArgumentException("Position is greater than length of list or list is empty");
         }
 
-        Node currentNode = first;
+        Node<X> currentNode = first;
         for (int i = 0; i < position; i++) {
             currentNode = currentNode.getNext();
         }
@@ -109,7 +109,7 @@ public class LinkedList<X> implements ListInf<X> {
     }
 
     public int find(X item) {
-        Node currentNode = first;
+        Node<X> currentNode = first;
         for (int i = 0; i < size(); i++) {
             if (currentNode.getItem().equals(item)) return i;
             currentNode = currentNode.getNext();
@@ -120,7 +120,7 @@ public class LinkedList<X> implements ListInf<X> {
     @Override
     public String toString() {
         StringBuilder contents = new StringBuilder();
-        Node currentNode = first;
+        Node<X> currentNode = first;
 
         while (currentNode != null) {
             contents.append(currentNode.getItem());
@@ -145,8 +145,8 @@ public class LinkedList<X> implements ListInf<X> {
         if (size != that.size()) return false;
         if (size == 0 && that.size() == 0) return true;
 
-        Node thisCur = this.first;
-        LinkedList<?>.Node thatCur = that.first;
+        Node<X> thisCur = this.first;
+        Node<?> thatCur = that.first;
 
         while (thisCur != null) {
             if (!thisCur.getItem().equals(thatCur.getItem())) {
@@ -164,42 +164,5 @@ public class LinkedList<X> implements ListInf<X> {
         return Objects.hash(first, last, size);
     }
 
-    protected class Node {
-        private Node next;
-        private X item;
 
-        Node(X item) {
-            this.next = null;
-            this.item = item;
-        }
-
-        public void setNext(Node next) {
-            this.next = next;
-        }
-
-        public Node getNext() {
-            return this.next;
-        }
-
-        public X getItem() {
-            return this.item;
-        }
-
-        public void setItem(X item) {
-            this.item = item;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            @SuppressWarnings("unchecked") Node node = (Node) o;
-            return Objects.equals(item, node.item);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(item);
-        }
-    }
 }

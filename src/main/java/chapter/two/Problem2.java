@@ -1,6 +1,7 @@
 package chapter.two;
 
 import chapter.two.list.LinkedList;
+import chapter.two.list.Node;
 
 /*
     Implement an algorithm to find the kth to the last element of a singly linked list.
@@ -23,8 +24,8 @@ public class Problem2<X> extends LinkedList<X> {
     // O(n) time for single traversal of list
     // O(1) space, constant amount of additional space used (2 pointers)
     public X getKFromEndTrailing(int k) {
-        Node cur = first;
-        Node trail = first;
+        Node<X> cur = first;
+        Node<X> trail = first;
         for (int i = 0; i < k; i++) {
             if (cur == null) {
                 throw new IndexOutOfBoundsException("k must be < size of list");

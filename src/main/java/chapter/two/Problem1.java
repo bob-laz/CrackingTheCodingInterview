@@ -1,6 +1,7 @@
 package chapter.two;
 
 import chapter.two.list.LinkedList;
+import chapter.two.list.Node;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,7 +17,7 @@ public class Problem1<X> extends LinkedList<X> {
         if (size == 0) return;
 
         Set<X> seenBefore = new HashSet<>();
-        Node current = first;
+        Node<X> current = first;
         seenBefore.add(first.getItem());
 
         while (current.getNext() != null) {
@@ -33,7 +34,7 @@ public class Problem1<X> extends LinkedList<X> {
     // implementation using a trailing value instead of a lookahead value
     public void removeDuplicatesPrevious() {
         Set<X> seenBefore = new HashSet<>();
-        Node prev = null, cur = first;
+        Node<X> prev = null, cur = first;
         while (cur != null) {
             if (seenBefore.contains(cur.getItem())) {
                 prev.setNext(cur.getNext());
@@ -48,9 +49,9 @@ public class Problem1<X> extends LinkedList<X> {
 
     // O(n^2) time but O(1) space
     public void removeDuplicatesNoBuffer() {
-        Node cur = first;
+        Node<X> cur = first;
         while (cur != null) {
-            Node runner = cur;
+            Node<X> runner = cur;
             while (runner.getNext() != null) {
                 if (runner.getNext().getItem().equals(cur.getItem())) {
                     runner.setNext(runner.getNext().getNext());
