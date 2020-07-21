@@ -14,6 +14,11 @@ public class Stack {
             this.data = data;
             next = null;
         }
+
+        @Override
+        public String toString() {
+            return next == null ? String.valueOf(data) : data + ", " + next.toString();
+        }
     }
 
     public void push(int data) {
@@ -40,5 +45,10 @@ public class Stack {
 
     public boolean isEmpty() {
         return top == null;
+    }
+
+    @Override
+    public String toString() {
+        return top.toString();
     }
 }
