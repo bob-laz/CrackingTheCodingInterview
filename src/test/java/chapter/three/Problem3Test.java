@@ -28,7 +28,7 @@ class Problem3Test {
         setOfStacks.push(6);
         setOfStacks.push(7);
 
-        // test isEmpty on populated stack stack
+        // test isEmpty on populated stack
         assertFalse(setOfStacks.isEmpty());
 
         // test peek

@@ -2,36 +2,36 @@ package chapter.three;
 
 import java.util.EmptyStackException;
 
-public class Stack<X> {
+public class Stack {
 
-    private Node<X> top;
+    private Node top;
 
-    private static class Node<X> {
-        private X data;
-        private Node<X> next;
+    private static class Node {
+        private int data;
+        private Node next;
 
-        public Node(X data) {
+        public Node(int data) {
             this.data = data;
             next = null;
         }
     }
 
-    public void push(X data) {
-        Node<X> newNode = new Node<>(data);
+    public void push(int data) {
+        Node newNode = new Node(data);
         newNode.next = top;
         top = newNode;
     }
 
-    public X pop() {
+    public int pop() {
         if (top == null) {
             throw new EmptyStackException();
         }
-        X data = top.data;
+        int data = top.data;
         top = top.next;
         return data;
     }
 
-    public X peek() {
+    public int peek() {
         if (top == null) {
             throw new EmptyStackException();
         }
