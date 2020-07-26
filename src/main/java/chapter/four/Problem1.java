@@ -10,9 +10,9 @@ public class Problem1 {
     // implementation of BFS, time complexity is dependent on number of nodes in the graph (N) and the total number of
     // edges in the graph (E), could also be referred to as the sum of the length of all the neighbor arrays. For the
     // worst case scenario (end is not found) we must check every node in the graph so O(N + E) since we must touch
-    // every neighbor of every node.
-    public static boolean routeBetween(Graph g, Node start, Node end) {
-        if (g == null || start == null || end == null) {
+    // every neighbor of every node. Space complexity depends on node with max number of neighbors to determine q size.
+    public static boolean routeBetweenBFS(Node start, Node end) {
+        if (start == null || end == null) {
             return false;
         }
         if (start == end) {
@@ -20,10 +20,6 @@ public class Problem1 {
         }
 
         LinkedList<Node> q = new LinkedList<>();
-        for (Node n : g.nodes) {
-            n.state = State.UNVISITED;
-        }
-
         start.state = State.VISITING;
         q.add(start);
         while (!q.isEmpty()) {
@@ -45,6 +41,27 @@ public class Problem1 {
         return false;
     }
 
+    // implementation of DFS using recursion. Time and space complexity are the same as BFS. We utilize the call stack
+    // instead of a queue for the space. DFS is likely to take longer than BFS in practice since it exhaustively
+    // searches every path so it may go very far down the wrong path. BFS searches nearest paths so more likely to find
+    // a closer target.
+    public static boolean routeBetweenDFS(Node start, Node end) {
+        if (start == null || end == null) {
+            return false;
+        } else if (start == end) {
+            return true;
+        }
+
+        start.state = State.VISITED;
+        boolean returnValue = false;
+        for (Node n : start.neighbors) {
+            if (n.state == State.UNVISITED) {
+                returnValue = returnValue || routeBetweenDFS(n, end);
+            }
+        }
+        return returnValue;
+    }
+
     static class Node {
         String data;
         State state;
@@ -52,11 +69,8 @@ public class Problem1 {
 
         public Node(String data) {
             this.data = data;
+            this.state = State.UNVISITED;
         }
-    }
-
-    static class Graph {
-        Node[] nodes;
     }
 
     enum State {
