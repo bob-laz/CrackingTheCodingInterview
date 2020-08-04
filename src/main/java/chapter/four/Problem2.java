@@ -12,7 +12,7 @@ public class Problem2 extends BinarySearchTree {
   // and each insertion takes O(log(n)). Inefficient solution, but this was the first solution I
   // came up with. This also creates copies of the array which takes O(n) time, possibly making this
   // solution O(n^2*log(n)), not totally sure.
-  // O(1) space, no additional space used
+  // O(log(n)) space used for recursive calls on the stack
   public void insertMinimalTree(int[] sortedArray) {
     int length = sortedArray.length;
     if (length == 1) {
