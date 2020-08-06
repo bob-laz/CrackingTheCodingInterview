@@ -92,6 +92,7 @@ public class BinarySearchTree {
     return minValue;
   }
 
+  // O(n) runtime
   public void preOrderTraversal() {
     recursivePreOrderTraversal(root);
   }
@@ -104,6 +105,7 @@ public class BinarySearchTree {
     }
   }
 
+  // O(n) runtime
   public void postOrderTraversal() {
     recursivePostOrderTraversal(root);
   }
@@ -116,6 +118,7 @@ public class BinarySearchTree {
     }
   }
 
+  // O(n) runtime
   public void inOrderTraversal() {
     recursiveInOrderTraversal(root);
   }
@@ -153,8 +156,8 @@ public class BinarySearchTree {
     }
   }
 
-  private void recursivePrintHelper(
-      StringBuilder sb, String padding, String pointer, Node node, boolean hasRightSibling) {
+  private void recursivePrintHelper(StringBuilder sb, String padding, String pointer, Node node,
+      boolean hasRightSibling) {
     if (node != null) {
       sb.append(System.lineSeparator());
       sb.append(padding);
@@ -198,8 +201,8 @@ public class BinarySearchTree {
       return false;
     } else {
       // check that subtrees are equal
-      return recursiveEquals(thisTree.left, thatTree.left)
-          && recursiveEquals(thisTree.right, thatTree.right);
+      return recursiveEquals(thisTree.left, thatTree.left) && recursiveEquals(thisTree.right,
+          thatTree.right);
     }
   }
 
@@ -218,6 +221,5 @@ public class BinarySearchTree {
     }
     return h;
   }
-
 
 }
