@@ -16,6 +16,8 @@ class Problem7Test {
 
     assertEquals(List.of("E", "F", "A", "B", "D", "C"),
         Problem7.findBuildOrder(projects, dependencies));
+    assertEquals(List.of("E", "F", "A", "B", "D", "C"),
+        Problem7.findBuildOrderTopological(projects, dependencies));
   }
 
   @Test
@@ -26,6 +28,8 @@ class Problem7Test {
 
     assertEquals(List.of("F", "E", "D", "C", "B", "A"),
         Problem7.findBuildOrder(projects, dependencies));
+    assertEquals(List.of("F", "E", "D", "C", "B", "A"),
+        Problem7.findBuildOrderTopological(projects, dependencies));
   }
 
   @Test
@@ -36,6 +40,8 @@ class Problem7Test {
 
     assertEquals(List.of("F", "E", "A", "B", "C", "D"),
         Problem7.findBuildOrder(projects, dependencies));
+    assertEquals(List.of("F", "E", "A", "B", "C", "D"),
+        Problem7.findBuildOrderTopological(projects, dependencies));
   }
 
   @Test
@@ -46,6 +52,8 @@ class Problem7Test {
 
     assertEquals(List.of("D", "F", "G", "B", "C", "A", "E"),
         Problem7.findBuildOrder(projects, dependencies));
+    assertEquals(List.of("D", "F", "G", "B", "C", "A", "E"),
+        Problem7.findBuildOrderTopological(projects, dependencies));
   }
 
   @Test
@@ -54,6 +62,8 @@ class Problem7Test {
     String[][] dependencies = new String[][]{{"A", "B"}, {"B", "A"}};
 
     assertThrows(Exception.class, () -> Problem7.findBuildOrder(projects, dependencies),
+        "No possible build order");
+    assertThrows(Exception.class, () -> Problem7.findBuildOrderTopological(projects, dependencies),
         "No possible build order");
   }
 
@@ -65,6 +75,8 @@ class Problem7Test {
 
     assertThrows(Exception.class, () -> Problem7.findBuildOrder(projects, dependencies),
         "No possible build order");
+    assertThrows(Exception.class, () -> Problem7.findBuildOrderTopological(projects, dependencies),
+        "No possible build order");
   }
 
   @Test
@@ -75,6 +87,7 @@ class Problem7Test {
 
     assertThrows(Exception.class, () -> Problem7.findBuildOrder(projects, dependencies),
         "No possible build order");
+    assertThrows(Exception.class, () -> Problem7.findBuildOrderTopological(projects, dependencies),
+        "No possible build order");
   }
-
 }
