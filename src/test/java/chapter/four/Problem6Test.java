@@ -3,7 +3,6 @@ package chapter.four;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import chapter.four.Problem6.NodeParent;
 import org.junit.jupiter.api.Test;
 
 class Problem6Test {
